@@ -6,37 +6,6 @@ import (
 	"strings"
 )
 
-func NewSAM(address string) (*SAM, error) {
-	logger := log.WithField("address", address)
-	logger.Debug("Creating new SAM instance")
-
-	conn, err := connectToSAM(address)
-	if err != nil {
-		return nil, err
-	}
-	defer func() {
-		if err != nil {
-			conn.Close()
-		}
-	}()
-
-	s := &SAM{
-		Conn: conn,
-	}
-
-	if err = sendHelloAndValidate(conn, s); err != nil {
-		return nil, err
-	}
-
-	s.SAMEmit.I2PConfig.SetSAMAddress(address)
-
-	if s.SAMResolver, err = NewSAMResolver(s); err != nil {
-		return nil, fmt.Errorf("failed to create SAM resolver: %w", err)
-	}
-
-	return s, nil
-}
-
 func connectToSAM(address string) (net.Conn, error) {
 	conn, err := net.Dial("tcp", address)
 	if err != nil {

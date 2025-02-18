@@ -37,6 +37,40 @@ func SplitHostPort(hostport string) (string, string, error) {
 	return host, port, nil
 }
 
+func ExtractPairString(input, value string) string {
+	log.WithFields(logrus.Fields{"input": input, "value": value}).Debug("ExtractPairString called")
+	parts := strings.Split(input, " ")
+	for _, part := range parts {
+		log.WithField("part", part).Debug("Checking part")
+		if strings.HasPrefix(part, value) {
+			kv := strings.SplitN(part, "=", 2)
+			if len(kv) == 2 {
+				log.WithFields(logrus.Fields{"key": kv[0], "value": kv[1]}).Debug("Pair extracted")
+				return kv[1]
+			}
+		}
+	}
+	log.WithFields(logrus.Fields{"input": input, "value": value}).Debug("No pair found")
+	return ""
+}
+
+func ExtractPairInt(input, value string) int {
+	rv, err := strconv.Atoi(ExtractPairString(input, value))
+	if err != nil {
+		log.WithFields(logrus.Fields{"input": input, "value": value}).Debug("No pair found")
+		return 0
+	}
+	log.WithField("result", rv).Debug("Pair extracted and converted to int")
+	return rv
+}
+
+func ExtractDest(input string) string {
+	log.WithField("input", input).Debug("ExtractDest called")
+	dest := strings.Split(input, " ")[0]
+	log.WithField("dest", dest).Debug("Destination extracted")
+	return strings.Split(input, " ")[0]
+}
+
 var randSource = rand.NewSource(time.Now().UnixNano())
 var randGen = rand.New(randSource)
 
