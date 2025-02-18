@@ -17,7 +17,7 @@ func (s *DatagramSession) B32() string {
 	return b32
 }
 
-func (s *DatagramSession) Dial(net string, addr string) (*DatagramSession, error) {
+func (s *DatagramSession) Dial(net, addr string) (*DatagramSession, error) {
 	log.WithFields(logrus.Fields{
 		"net":  net,
 		"addr": addr,

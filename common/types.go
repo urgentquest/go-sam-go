@@ -50,7 +50,7 @@ type I2PConfig struct {
 	ReduceIdleQuantity        int
 	LeaseSetEncryption        string
 
-	//Streaming Library options
+	// Streaming Library options
 	AccessListType string
 	AccessList     []string
 }

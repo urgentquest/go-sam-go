@@ -52,7 +52,7 @@ func (s *StreamSession) Dial(n, addr string) (c net.Conn, err error) {
 	var i2paddr i2pkeys.I2PAddr
 	var host string
 	host, _, err = net.SplitHostPort(addr)
-	//log.Println("Dialing:", host)
+	// log.Println("Dialing:", host)
 	if err = common.IgnorePortError(err); err == nil {
 		// check for name
 		if strings.HasSuffix(host, ".b32.i2p") || strings.HasSuffix(host, ".i2p") {
@@ -62,8 +62,8 @@ func (s *StreamSession) Dial(n, addr string) (c net.Conn, err error) {
 		} else {
 			// probably a destination
 			i2paddr, err = i2pkeys.NewI2PAddrFromBytes([]byte(host))
-			//i2paddr = i2pkeys.I2PAddr(host)
-			//log.Println("Destination:", i2paddr, err)
+			// i2paddr = i2pkeys.I2PAddr(host)
+			// log.Println("Destination:", i2paddr, err)
 			log.WithFields(logrus.Fields{"host": host, "i2paddr": i2paddr}).Debug("Created I2P address from bytes")
 		}
 		if err == nil {

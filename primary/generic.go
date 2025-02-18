@@ -69,7 +69,7 @@ func (sam *PrimarySession) NewGenericSubSessionWithSignatureAndPorts(style, id, 
 	}
 	text := string(buf[:n])
 	log.WithField("response", text).Debug("Received response from SAM")
-	//log.Println("SAM:", text)
+	// log.Println("SAM:", text)
 	if strings.HasPrefix(text, SESSION_ADDOK) {
 		//if sam.keys.String() != text[len(common.SESSION_ADDOK):len(text)-1] {
 		//conn.Close()

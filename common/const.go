@@ -1,7 +1,9 @@
 package common
 
-const DEFAULT_SAM_MIN = "3.1"
-const DEFAULT_SAM_MAX = "3.3"
+const (
+	DEFAULT_SAM_MIN = "3.1"
+	DEFAULT_SAM_MAX = "3.3"
+)
 
 const (
 	SESSION_OK             = "SESSION STATUS RESULT=OK DESTINATION="

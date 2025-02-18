@@ -452,7 +452,7 @@ func (f *I2PConfig) LeaseSetEncryptionType() string {
 	for _, s := range strings.Split(f.LeaseSetEncryption, ",") {
 		if _, err := strconv.Atoi(s); err != nil {
 			log.WithField("invalidType", s).Panic("Invalid encrypted leaseSet type")
-			//panic("Invalid encrypted leaseSet type: " + s)
+			// panic("Invalid encrypted leaseSet type: " + s)
 		}
 	}
 

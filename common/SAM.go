@@ -57,7 +57,7 @@ func OldNewSAM(address string) (*SAM, error) {
 }
 
 func (sam *SAM) Keys() (k *i2pkeys.I2PKeys) {
-	//TODO: copy them?
+	// TODO: copy them?
 	log.Debug("Retrieving SAM keys")
 	k = sam.SAMEmit.I2PConfig.DestinationKeys
 	return
@@ -98,7 +98,7 @@ func (sam *SAM) EnsureKeyfile(fname string) (keys i2pkeys.I2PKeys, err error) {
 				sam.SAMEmit.I2PConfig.DestinationKeys = &keys
 				// save keys
 				var f io.WriteCloser
-				f, err = os.OpenFile(fname, os.O_WRONLY|os.O_CREATE, 0600)
+				f, err = os.OpenFile(fname, os.O_WRONLY|os.O_CREATE, 0o600)
 				if err == nil {
 					err = i2pkeys.StoreKeysIncompat(keys, f)
 					f.Close()

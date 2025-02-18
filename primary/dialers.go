@@ -13,11 +13,11 @@ import (
 func (sam *PrimarySession) Dial(network, addr string) (net.Conn, error) {
 	log.WithFields(logrus.Fields{"network": network, "addr": addr}).Debug("Dial() called")
 	if network == "udp" || network == "udp4" || network == "udp6" {
-		//return sam.DialUDPI2P(network, network+addr[0:4], addr)
+		// return sam.DialUDPI2P(network, network+addr[0:4], addr)
 		return sam.DialUDPI2P(network, network+addr[0:4], addr)
 	}
 	if network == "tcp" || network == "tcp4" || network == "tcp6" {
-		//return sam.DialTCPI2P(network, network+addr[0:4], addr)
+		// return sam.DialTCPI2P(network, network+addr[0:4], addr)
 		return sam.DialTCPI2P(network, network+addr[0:4], addr)
 	}
 	log.WithField("network", network).Error("Invalid network type")
@@ -41,7 +41,7 @@ func (sam *PrimarySession) DialTCP(network string, laddr, raddr net.Addr) (net.C
 	return ts.Dial(network, raddr.String())
 }
 
-func (sam *PrimarySession) DialTCPI2P(network string, laddr, raddr string) (net.Conn, error) {
+func (sam *PrimarySession) DialTCPI2P(network, laddr, raddr string) (net.Conn, error) {
 	log.WithFields(logrus.Fields{"network": network, "laddr": laddr, "raddr": raddr}).Debug("DialTCPI2P() called")
 	ts, ok := sam.stsess[network+raddr[0:4]]
 	var err error

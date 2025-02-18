@@ -74,5 +74,5 @@ func (s *SAM) NewDatagramSession(id string, keys i2pkeys.I2PKeys, options []stri
 	}
 	datagramSession.Conn = conn
 	return datagramSession, nil
-	//return &DatagramSession{s.address, id, conn, udpconn, keys, rUDPAddr, nil}, nil
+	// return &DatagramSession{s.address, id, conn, udpconn, keys, rUDPAddr, nil}, nil
 }
