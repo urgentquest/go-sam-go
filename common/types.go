@@ -1,8 +1,10 @@
 package common
 
 import (
+	"context"
 	"fmt"
 	"net"
+	"time"
 
 	"github.com/go-i2p/i2pkeys"
 )
@@ -64,6 +66,11 @@ type SAM struct {
 	SAMEmit
 	*SAMResolver
 	net.Conn
+
+	// Timeout for SAM connections
+	Timeout time.Duration
+	// Context for control of lifecycle
+	Context context.Context
 }
 
 type SAMResolver struct {

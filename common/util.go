@@ -37,11 +37,12 @@ func SplitHostPort(hostport string) (string, string, error) {
 	return host, port, nil
 }
 
+var randSource = rand.NewSource(time.Now().UnixNano())
+var randGen = rand.New(randSource)
+
 func RandPort() string {
 	for {
-		s := rand.NewSource(time.Now().UnixNano())
-		r := rand.New(s)
-		p := r.Intn(55534) + 10000
+		p := randGen.Intn(55534) + 10000
 		port := strconv.Itoa(p)
 		if l, e := net.Listen("tcp", net.JoinHostPort("localhost", port)); e != nil {
 			continue
@@ -54,6 +55,5 @@ func RandPort() string {
 				return strconv.Itoa(l.Addr().(*net.UDPAddr).Port)
 			}
 		}
-
 	}
 }

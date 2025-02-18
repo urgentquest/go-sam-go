@@ -38,25 +38,25 @@ func (f *I2PConfig) Sam() string {
 // SetSAMAddress sets the SAM bridge host and port from a combined address string.
 // If no address is provided, it sets default values for the host and port.
 func (f *I2PConfig) SetSAMAddress(addr string) {
-	// Set default values
-	f.SamHost = "127.0.0.1"
-	f.SamPort = 7656
-
-	// Split address into host and port components
-	host, port, err := net.SplitHostPort(addr)
-	if err != nil {
-		// If error occurs, assume only host is provided
-		f.SamHost = addr
-	} else {
-		f.SamHost = host
-		f.SamPort, _ = strconv.Atoi(port)
+	if addr == "" {
+		f.SamHost = "127.0.0.1"
+		f.SamPort = 7656
+		return
 	}
 
-	// Log the configured SAM address
-	log.WithFields(logrus.Fields{
-		"host": f.SamHost,
-		"port": f.SamPort,
-	}).Debug("SAM address set")
+	host, port, err := net.SplitHostPort(addr)
+	if err != nil {
+		// Only set host if it looks valid
+		if net.ParseIP(addr) != nil || !strings.Contains(addr, ":") {
+			f.SamHost = addr
+		}
+		return
+	}
+
+	f.SamHost = host
+	if p, err := strconv.Atoi(port); err == nil && p > 0 && p < 65536 {
+		f.SamPort = p
+	}
 }
 
 // ID returns the tunnel name as a formatted string. If no tunnel name is set,
