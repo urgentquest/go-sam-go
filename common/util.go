@@ -71,8 +71,10 @@ func ExtractDest(input string) string {
 	return strings.Split(input, " ")[0]
 }
 
-var randSource = rand.NewSource(time.Now().UnixNano())
-var randGen = rand.New(randSource)
+var (
+	randSource = rand.NewSource(time.Now().UnixNano())
+	randGen    = rand.New(randSource)
+)
 
 func RandPort() string {
 	for {
