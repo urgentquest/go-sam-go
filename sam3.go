@@ -1,4 +1,4 @@
-// Library for I2Ps SAMv3 bridge (https://geti2p.com)
+// package sam3 wraps the original sam3 API from github.com/go-i2p/sam3
 package sam3
 
 import (

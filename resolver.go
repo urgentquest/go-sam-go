@@ -1,3 +1,4 @@
+// package sam3 wraps the original sam3 API from github.com/go-i2p/sam3
 package sam3
 
 type SAMResolver struct {
