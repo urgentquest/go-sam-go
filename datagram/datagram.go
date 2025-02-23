@@ -12,7 +12,7 @@ import (
 
 // Creates a new datagram session. udpPort is the UDP port SAM is listening on,
 // and if you set it to zero, it will use SAMs standard UDP port.
-func (s *SAM) NewDatagramSession(id string, keys i2pkeys.I2PKeys, options []string, udpPort int) (*DatagramSession, error) {
+func (s SAM) NewDatagramSession(id string, keys i2pkeys.I2PKeys, options []string, udpPort int) (*DatagramSession, error) {
 	log.WithFields(logrus.Fields{
 		"id":      id,
 		"udpPort": udpPort,
