@@ -8,7 +8,9 @@ import (
 	"github.com/go-i2p/i2pkeys"
 )
 
-type SAM common.SAM
+type SAM struct {
+	*common.SAM
+}
 
 // Represents a streaming session.
 type StreamSession struct {
