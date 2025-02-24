@@ -22,7 +22,9 @@ type SAM struct {
 
 // Creates a new stream session by wrapping stream.NewStreamSession
 func (s *SAM) NewStreamSession(param1 string, keys i2pkeys.I2PKeys, param3 []string) (*StreamSession, error) {
-	sam := stream.SAM(*s.SAM)
+	sam := &stream.SAM{
+		SAM: s.SAM,
+	}
 	ss, err := sam.NewStreamSession(param1, keys, param3)
 	if err != nil {
 		return nil, err
