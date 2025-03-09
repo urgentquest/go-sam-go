@@ -60,23 +60,6 @@ func (s *SAM) NewPrimarySession(id string, keys i2pkeys.I2PKeys, options []strin
 	return &primarySession, nil
 }
 
-const (
-	session_OK             = "SESSION STATUS RESULT=OK DESTINATION="
-	session_DUPLICATE_ID   = "SESSION STATUS RESULT=DUPLICATED_ID\n"
-	session_DUPLICATE_DEST = "SESSION STATUS RESULT=DUPLICATED_DEST\n"
-	session_INVALID_KEY    = "SESSION STATUS RESULT=INVALID_KEY\n"
-	session_I2P_ERROR      = "SESSION STATUS RESULT=I2P_ERROR MESSAGE="
-)
-
-const (
-	Sig_NONE                 = "SIGNATURE_TYPE=EdDSA_SHA512_Ed25519"
-	Sig_DSA_SHA1             = "SIGNATURE_TYPE=DSA_SHA1"
-	Sig_ECDSA_SHA256_P256    = "SIGNATURE_TYPE=ECDSA_SHA256_P256"
-	Sig_ECDSA_SHA384_P384    = "SIGNATURE_TYPE=ECDSA_SHA384_P384"
-	Sig_ECDSA_SHA512_P521    = "SIGNATURE_TYPE=ECDSA_SHA512_P521"
-	Sig_EdDSA_SHA512_Ed25519 = "SIGNATURE_TYPE=EdDSA_SHA512_Ed25519"
-)
-
 var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 func RandString() string {
