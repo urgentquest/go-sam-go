@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/go-i2p/go-sam-go/logger"
 	"github.com/sirupsen/logrus"
 )
 
@@ -76,7 +77,7 @@ var (
 )
 
 func getEnv(key, fallback string) string {
-	InitializeSAM3Logger()
+	logger.InitializeSAM3Logger()
 	value, ok := os.LookupEnv(key)
 	if !ok {
 		log.WithFields(logrus.Fields{
