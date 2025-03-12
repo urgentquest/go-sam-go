@@ -8,18 +8,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-const (
-	SESSION_STYLE_STREAM   = "STREAM"
-	SESSION_STYLE_DATAGRAM = "DATAGRAM"
-	SESSION_STYLE_RAW      = "RAW"
-)
-
-const (
-	ACCESS_TYPE_WHITELIST = "whitelist"
-	ACCESS_TYPE_BLACKLIST = "blacklist"
-	ACCESS_TYPE_NONE      = "none"
-)
-
 // Option is a SAMEmit Option
 type Option func(*SAMEmit) error
 
